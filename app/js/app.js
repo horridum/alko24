@@ -1,4 +1,8 @@
+
 require('nw.gui').Window.get().showDevTools();
+
+var Express = require('express');
+var App = express();
 
 var Knex = require('knex')({
   client : 'sqlite3',
@@ -8,7 +12,7 @@ var Knex = require('knex')({
   });
 
 var Bookshelf = require('bookshelf')(Knex);
-
+App.set('Bookshelf', Bookshelf);
 
 var Order = Bookshelf.Model.extend({
   tableName: 'orders',
