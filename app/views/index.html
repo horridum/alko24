@@ -1,11 +1,123 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>alko24</title>
-    <script src="../js/index.js"></script>
+    <title></title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../css/bootstrap.css" />    
+<link rel="stylesheet" href="../css/bootstrap-theme.css" />  
+<link rel="stylesheet" href="../css/main.css" />    
+
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/jquery-jec.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
+  
 </head>
-<body>
-	<h1>alko24</h1>
-	<p>alko24</p>
+<body class="container">
+
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+			  <a class="navbar-brand"></a>
+			</div>
+				<ul class="nav navbar-nav">
+					<li onclick="clearform(); $('#additemform').toggle(500); $('#title').focus(); $(this).text('Close orders');"><a id="addbtn" href="#">Add orders</a></li>
+					
+					<li onclick="showstore(); $('#viewstore').toggle(300);"><a href="#">View store</a></li>
+               		
+					<li><a href="#">Edit drivers</a></li>
+					<li><a href="#">Edit operators</a></li>
+					
+					<li><a href="#">Make report</a></li>
+				</ul>
+				
+		</div>
+	</nav>
+
+
+	<div id="additemform" style="display: none;">
+		<form role="form" onsubmit="additem_click();">
+   			<div class="form-group">
+		    	<label for="title">Title</label>
+      			<select class="form-control" id="title" required = "required"  
+         		placeholder="select or enter title" onblur="validate_t('#title');" >
+      			</select>
+   			</div>
+   			<div class="form-group">
+      			<label for="quantity">Quantity</label>
+      			<input type="number" value="1" class="form-control" id="quantity" min=1  required = "required" onblur="validate_n('#quantity');" />
+      		</div>
+      		<div class="form-group">
+      			<label for="price">Price</label>
+      			<input type="number" value="0" class="form-control" id="price" min=0  required = "required" onblur="validate_n('#price');"/>
+   			</div>
+   			<!-- div class="checkbox">
+      			<label>
+      			<input type="checkbox" id="checkbox"/> Close form after adding
+      			</label>
+   			</div -->
+   			<button type="submit" class="btn btn-primary">Submit</button>
+   			<button type="cancel" class="btn btn-warning" onclick="$('#additemform').toggle(500); clearform(); return(false);">Отмена</button>
+   			<button type="delete" class="btn btn-danger"
+   			 onclick="if (confirm('really delete?')) { deleteitem($('#title :selected').val(),'items'); } clearform(); return(false);">Удалить</button>
+
+		</form>
+	</div>
+
+
+	<div id="viewstore" style="display: none;">
+    	
+<table class="store"><thead><tr><th>Наименование</th><th>Количество</th><th>Цена</th><th>Стоимость</th><th></th></tr></thead><tbody id="itemstable">
+    			 
+</tbody></table>
+    	
+	</div>
+
+	<div id="addorderform" style="display:none;">
+		<form role="form" onsubmit="addorder_click();">
+			<div class="form-group">
+		    	<label for="releasedate">date</label>
+		    	<input type="text" id="releasedate" class="form-control" required="required" placeholder="date">
+   			</div>
+
+   			<div class="form-group">
+      			<label for="driver"></label>
+      			<input type="number" value="1" class="form-control" id="quantity" min=1  required = "required" onblur="validate_n('#quantity');" />
+      		</div>
+      		<div class="form-group">
+      			<label for="price">Price</label>
+      			<input type="number" value="0" class="form-control" id="price" min=0  required = "required" onblur="validate_n('#price');"/>
+   			</div>
+   			<div class="checkbox">
+      			<label>
+      			<input type="checkbox" id="checkbox"/> Close form after adding
+      			</label>
+   			</div>
+   			<button type="submit" class="btn btn-primary">Submit</button>
+   			<button type="cancel" class="btn btn-warning" onclick="$('#additemform').toggle(500); clearform('#addorderform'); ">Отмена</button>
+		</form>
+	</div>
+
+<script>
+
+  $('#title').jec({acceptedKeys: [{min:32, max:382}, {min:1024, max:1327}, {min:11744, max:11775}, {min:42560, max:42655}]});  
+  $('#title').jec({"blinkingCursor": true, "blinkingCursorInterval": 500});
+  $(function(){
+  	$('#releasedate').datepicker();
+  });
+
+/*
+  var gulp = require('gulp');
+  gulp.task('reload', function () {
+    if (location) location.reload();
+  });
+*/
+//  gulp.watch('**/*', ['reload']);
+
+</script>
+
+
+
 </body>
 </html>

@@ -1,0 +1,51 @@
+{
+  "name": "jquery-jec",
+  "title": "jQuery Editable Combobox",
+  "version": "1.3.4",
+  "description": "Editable combobox implementation for jQuery",
+  "main": "dist/jquery-jec.js",
+  "author": {
+    "name": "Lukasz Rajchel",
+    "url": "http://rajchel.pl"
+  },
+  "homepage": "https://github.com/RaYell/jquery-jec",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RaYell/jquery-jec"
+  },
+  "keywords": [
+    "jquery",
+    "combobox",
+    "jec"
+  ],
+  "bugs": {
+    "url": "https://github.com/RaYell/jquery-jec/issues"
+  },
+  "licenses": [
+    {
+      "type": "Apache",
+      "url": "https://github.com/RaYell/jquery-jec/blob/master/LICENSE"
+    }
+  ],
+  "dependencies": {
+    "jquery": "^2.1.1"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-contrib-uglify": "^0.4.0",
+    "mocha": "^1.18.2",
+    "chai": "^1.9.1",
+    "grunt-mocha": "^0.4.10",
+    "grunt-blanket": "0.0.8",
+    "blanket": "^1.1.6",
+    "grunt-blanket-mocha": "^0.4.0",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-jslint": "^1.1.10",
+    "grunt-contrib-jshint": "^0.10.0",
+    "http-server": "^0.6.1",
+    "requirejs": "^2.1.11"
+  }
+}

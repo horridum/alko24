@@ -1,28 +1,30 @@
+'use strict';
 
-require('nw.gui').Window.get().showDevTools();
-
-var Express = require('express');
-var App = express();
+// var jquery = require('jquery');
+//var bootstrap = require('bootstrap')(jquery);
+var gui = require('nw.gui');
+var win = gui.Window.get();
+global.gui = gui;
+global.win = win;
+win.showDevTools();
 
 var Knex = require('knex')({
   client : 'sqlite3',
     connection: {
-      filename: "./alko24.sqlite"
+      filename: './alko24.sqlite'
     }
   });
 
 var Bookshelf = require('bookshelf')(Knex);
-App.set('Bookshelf', Bookshelf);
+var Item = Bookshelf.Model.extend({
+  tableName: 'items'
+});
 
 var Order = Bookshelf.Model.extend({
   tableName: 'orders',
   items: function() {
-    return this.hasMany(Item)
+    return this.hasMany(Item);
   }
-});
-
-var Item = Bookshelf.Model.extend({
-  tableName: 'items'
 });
 
 new Order().fetchAll().then(function(items){

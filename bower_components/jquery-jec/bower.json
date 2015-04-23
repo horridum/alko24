@@ -1,0 +1,18 @@
+{
+    "name": "jquery-jec",
+    "version": "1.3.4",
+    "author": "Lukasz Rajchel",
+    "description": "jQuery Editable Combobox",
+    "keywords": [
+        "jQuery",
+        "combobox",
+        "editable"
+    ],
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "README.md"
+    ]
+}
