@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="../css/bootstrap.css" />    
 <link rel="stylesheet" href="../css/bootstrap-theme.css" />  
 <link rel="stylesheet" href="../css/main.css" />    
+<link rel="stylesheet" href="../css/jquery-ui.css" />    
 
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript" src="../js/jquery-jec.js"></script>
@@ -22,22 +23,23 @@
 			  <a class="navbar-brand"></a>
 			</div>
 				<ul class="nav navbar-nav">
-					<li onclick="clearform(); $('#additemform').toggle(500); $('#title').focus(); $(this).text('Close orders');"><a id="addbtn" href="#">Add orders</a></li>
-					
-					<li onclick="showstore(); $('#viewstore').toggle(300);"><a href="#">View store</a></li>
+					<li onclick="clearorders(); $('#addorderform').toggle(100);"><a href="#">Продажи</a></li>
+					<li onclick="clearform(); $('#additemform').toggle(100); $('#title').focus(); "><a href="#">Закупки</a></li>
                		
-					<li><a href="#">Edit drivers</a></li>
-					<li><a href="#">Edit operators</a></li>
+					<li onclick="loaddrivers(); $('#drivers').toggle(100);" ><a href="#">Водители</a></li>
+					<li onclick="loadoperators(); $('#operators').toggle(100);" ><a href="#">Операторы</a></li>
 					
-					<li><a href="#">Make report</a></li>
+					<li><a href="#">Отчет</a></li>
 				</ul>
 				
 		</div>
 	</nav>
 
 
+
+
 	<div id="additemform" style="display: none;">
-		<form role="form" onsubmit="additem_click();">
+		<form role="form" onsubmit="add_item();" class="form-inline">
    			<div class="form-group">
 		    	<label for="title">Title</label>
       			<select class="form-control" id="title" required = "required"  
@@ -52,51 +54,145 @@
       			<label for="price">Price</label>
       			<input type="number" value="0" class="form-control" id="price" min=0  required = "required" onblur="validate_n('#price');"/>
    			</div>
-   			<!-- div class="checkbox">
-      			<label>
-      			<input type="checkbox" id="checkbox"/> Close form after adding
-      			</label>
-   			</div -->
-   			<button type="submit" class="btn btn-primary">Submit</button>
-   			<button type="cancel" class="btn btn-warning" onclick="$('#additemform').toggle(500); clearform(); return(false);">Отмена</button>
-   			<button type="delete" class="btn btn-danger"
-   			 onclick="if (confirm('really delete?')) { deleteitem($('#title :selected').val(),'items'); } clearform(); return(false);">Удалить</button>
-
+   			<div class="form-group">
+   				<button type="submit" class="btn btn-success">ОК</button>
+   				<button type="cancel" class="btn btn-warning" onclick="$('#additemform').toggle(100); clearform(); return(false);">Отмена</button>
+   			</div>
+   			
 		</form>
+		<div id="viewstore">
+    	
+			<table class="store">
+				<thead>
+					<tr>
+						<th>Наименование</th>
+						<th>Количество</th>
+						<th>Цена</th>
+						<th>Стоимость</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody id="itemstable">	 
+				</tbody>
+			</table>
+		</div>
 	</div>
 
 
-	<div id="viewstore" style="display: none;">
-    	
-<table class="store"><thead><tr><th>Наименование</th><th>Количество</th><th>Цена</th><th>Стоимость</th><th></th></tr></thead><tbody id="itemstable">
-    			 
-</tbody></table>
-    	
-	</div>
+
 
 	<div id="addorderform" style="display:none;">
-		<form role="form" onsubmit="addorder_click();">
-			<div class="form-group">
-		    	<label for="releasedate">date</label>
-		    	<input type="text" id="releasedate" class="form-control" required="required" placeholder="date">
-   			</div>
-
+		<form role="form" onsubmit="add_order();" class="form-inline" name="oform">
+			
    			<div class="form-group">
-      			<label for="driver"></label>
-      			<input type="number" value="1" class="form-control" id="quantity" min=1  required = "required" onblur="validate_n('#quantity');" />
+      			<label for="driver">Водитель</label>
+      			<select class="form-control" id="odriver" required = "required" >
+      			</select>
       		</div>
       		<div class="form-group">
-      			<label for="price">Price</label>
-      			<input type="number" value="0" class="form-control" id="price" min=0  required = "required" onblur="validate_n('#price');"/>
+      			<label for="operator">Оператор</label>
+      			<select class="form-control" id="ooperator" required = "required" >
+      			</select>
+      		</div>
+      		<div class="form-group">
+		    	<label for="releasedate">Дата</label>
+		    	<input type="text" id="releasedate" class="form-control" required="required" placeholder="date">
    			</div>
-   			<div class="checkbox">
-      			<label>
-      			<input type="checkbox" id="checkbox"/> Close form after adding
-      			</label>
-   			</div>
-   			<button type="submit" class="btn btn-primary">Submit</button>
-   			<button type="cancel" class="btn btn-warning" onclick="$('#additemform').toggle(500); clearform('#addorderform'); ">Отмена</button>
+      		<div id="buys">
+      			
+      			<div class="form-group">
+      				<label for="otitle">Наименование</label>
+      				<select class="form-control" id="otitle" required = "required">
+      				</select>
+      			</div>
+      			<div class="form-group">
+      				<label for="oquantity">Количество</label>
+      				<input type="number" value="1" class="form-control" id="oquantity" min=1  required = "required" onblur="validate_n('#oquantity');" />
+      			</div>
+      			<div class="form-group">
+      				<label for="price">Цена</label>
+      				<input type="number" value="0" class="form-control" id="oprice" min=0  required = "required" onblur="validate_n('#oprice');"/>
+   				</div>
+   				<button class="btn-toolbar glyphicon-plus" onclick="addnewpanel();" alt="Добавить позицию">+</button>
+   				<button class="btn-toolbar glyphicon-minus" onclick="delnewpanel();" alt="Удалить последнюю добавленную позицию">-</button>
+      		</div>
+  
+   				<input type="hidden" id="amount" value="1"/>
+   				<button type="submit" class="btn btn-success">OK</button>
+   				<button type="cancel" class="btn btn-warning" onclick="$('#addorderform').toggle(100);  ">Отмена</button>
+   			
 		</form>
+		<div id="vieworders">
+    		<table class="store">
+				<thead>
+					<tr>
+						<th>Дата</th>
+						<th>Сумма</th>
+						<th>Водитель</th>
+						<th>Оператор</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody id="orderstable">	 
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div id="drivers" style="display:none;">
+		<form role="form" class="form-inline" onsubmit="add_driver();">
+   			<div class="form-group">
+      			<label for="driver_name">Имя</label>
+      			<input type="text" class="form-control" id="driver_name" required = "required" onblur="validate_t('#driver_name');">
+      		</div>
+      		<div class="form-group">
+      			<label for="driver_share">Доля</label>
+      			<input type="number" value="0" class="form-control" id="driver_share" min="0"  required="required" onblur="validate_n('#driver_share');"/>
+   			</div>
+   			<button type="submit" class="btn btn-success">ОК</button>
+   			<button type="cancel" class="btn btn-warning" onclick="$('#drivers').toggle(100); return(false);  ">Отмена</button>
+		</form>
+		<table class="store">
+			<thead>
+				<tr>
+					<th>Имя</th>
+					<th>Доля</th>
+				</tr>
+			</thead>
+			<tbody id="driverstable">	 
+			</tbody>
+		</table>	
+		
+	</div>
+	<div id="operators" style="display:none;">
+		<form role="form" class="form-inline" onsubmit="add_operator();">
+   			<div class="form-group">
+      			<label for="operator_name">Имя</label>
+      			<input type="text" class="form-control" id="operator_name" required = "required" onblur="validate_t('#operator_name');">
+      		</div>
+      		<div class="form-group">
+      			<label for="operator_share">Доля</label>
+      			<input type="number" value="0" class="form-control" id="operator_share" min="0"  required="required" onblur="validate_n('#operator_share');"/>
+   			</div>
+   			<button type="submit" class="btn btn-success">ОК</button>
+   			<button type="cancel" class="btn btn-warning" onclick="$('#operators').toggle(100); return(false);  ">Отмена</button>
+		</form>
+		<table class="store">
+			<thead>
+				<tr>
+					<th>Имя</th>
+					<th>Доля</th>
+				</tr>
+			</thead>
+			<tbody id="operatorstable">	 
+			</tbody>
+		</table>	
+		
+	</div>
+
+
+	<div id="report" style="display:none;">
+
 	</div>
 
 <script>
@@ -104,16 +200,15 @@
   $('#title').jec({acceptedKeys: [{min:32, max:382}, {min:1024, max:1327}, {min:11744, max:11775}, {min:42560, max:42655}]});  
   $('#title').jec({"blinkingCursor": true, "blinkingCursorInterval": 500});
   $(function(){
-  	$('#releasedate').datepicker();
+  	$('#releasedate').datepicker({
+  		dateFormat: "dd.mm.yy"
+  	});
   });
+  $.datepicker.setDefaults($.datepicker.regional['ru']);
 
-/*
-  var gulp = require('gulp');
-  gulp.task('reload', function () {
-    if (location) location.reload();
-  });
-*/
-//  gulp.watch('**/*', ['reload']);
+  //$.datepicker.formatDate("dd.mm.yy", );
+
+
 
 </script>
 

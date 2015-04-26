@@ -5,11 +5,15 @@
   "single-instance": true,
   "window": {
     "title": "alko24",
-    "width": 769,
-    "height": 650,
-    "min_width": 650,
-    "min_height": 650,
-    "toolbar": true
+    "width": 800,
+    "height": 768,
+    "min_width": 800,
+    "min_height": 768,
+    "toolbar": false,
+    "frame": true,
+    "position": "center"
+
+
   },
   "chromium-args": "--child-clean-exit"
 }
