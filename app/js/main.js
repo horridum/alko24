@@ -171,6 +171,8 @@ function loaddrivers(){
 function addnewpanel(){
   var num = parseInt($('#amount').val()) + 1;
   var div = document.createElement('div');
+  div.id = 'buy'+num;
+  console.log(div); 
   div.innerHTML='<div class="form-group"><select class="form-control" id="otitle'+num+'" required = "required"></select></div><div class="form-group"><input type="number" value="1" class="form-control" id="oquantity'+num+'" min=1  required = "required" onblur="validate_n(\'#oquantity'+num+'\');" /></div><div class="form-group"><input type="number" value="0" class="form-control" id="oprice'+num+'" min=0  required = "required" onblur="validate_n(\'#oprice'+num+'\');"/></div>'
   //var oarr = Array();
   //var otitle = $("otitle").clone();
@@ -188,23 +190,19 @@ function addnewpanel(){
        opt.value = element.attributes.id;
        opt.text = element.attributes.title;     
        var cur = '#otitle' + num;
-       var cr3 = document.getElementById(cur);
-       console.log(cur);
-       console.log(cr3);
        $(cur).append(opt);
    });
   });
-  //otitle.id='otitle'+num;
-  //oprice.type='text';
-  //oprice.id='oprice'+num;
-  //oquantity.type='text';
-  //oquantity.id='oquantity'+num;
-  
-  //div.append(oprice);
-  //div.append(oquantity);
-
 }
-
+function delnewpanel(){
+  var num = parseInt($('#amount').val());
+  if (num>1){
+    var cur='buy'+num;
+    $(cur).remove();
+    num=num-1;
+    $('#amount').val(num);
+  }
+}
 function add_driver(){
   var name = $('#driver_name').val();
   var share = $('#driver_share').val();
