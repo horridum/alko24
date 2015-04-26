@@ -99,3 +99,14 @@ width: 100%;
 	background-color: #ccc;
 }
 
+input[type="text"], input[type="number"] {
+	width:170px;
+}
+select.select {
+	width: 170px;
+}
+}
+
+.form-group {
+	display: inline;
+}

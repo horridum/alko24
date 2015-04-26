@@ -41,17 +41,16 @@
 	<div id="additemform" style="display: none;">
 		<form role="form" onsubmit="add_item();" class="form-inline">
    			<div class="form-group">
-		    	<label for="title">Title</label>
-      			<select class="form-control" id="title" required = "required"  
-         		placeholder="select or enter title" onblur="validate_t('#title');" >
+		    	<label for="title">Наименование</label><br/>
+      			<select class="form-control select" id="title" required = "required" onblur="validate_t('#title');" >
       			</select>
    			</div>
    			<div class="form-group">
-      			<label for="quantity">Quantity</label>
+      			<label for="quantity">Количество</label><br/>
       			<input type="number" value="1" class="form-control" id="quantity" min=1  required = "required" onblur="validate_n('#quantity');" />
       		</div>
       		<div class="form-group">
-      			<label for="price">Price</label>
+      			<label for="price">Цена</label><br/>
       			<input type="number" value="0" class="form-control" id="price" min=0  required = "required" onblur="validate_n('#price');"/>
    			</div>
    			<div class="form-group">
@@ -85,32 +84,32 @@
 		<form role="form" onsubmit="add_order();" class="form-inline" name="oform">
 			
    			<div class="form-group">
-      			<label for="driver">Водитель</label>
-      			<select class="form-control" id="odriver" required = "required" >
+      			<label for="driver">Водитель</label><br/>
+      			<select class="form-control select" id="odriver" required = "required" >
       			</select>
       		</div>
       		<div class="form-group">
-      			<label for="operator">Оператор</label>
-      			<select class="form-control" id="ooperator" required = "required" >
+      			<label for="operator">Оператор</label><br/>
+      			<select class="form-control select" id="ooperator" required = "required" >
       			</select>
       		</div>
       		<div class="form-group">
-		    	<label for="releasedate">Дата</label>
+		    	<label for="releasedate">Дата</label><br/>
 		    	<input type="text" id="releasedate" class="form-control" required="required" placeholder="date">
    			</div>
       		<div id="buys">
       			
       			<div class="form-group">
-      				<label for="otitle">Наименование</label>
-      				<select class="form-control" id="otitle" required = "required">
+      				<label for="otitle">Наименование</label><br/>
+      				<select class="form-control select" id="otitle" required = "required">
       				</select>
       			</div>
       			<div class="form-group">
-      				<label for="oquantity">Количество</label>
+      				<label for="oquantity">Количество</label><br/>
       				<input type="number" value="1" class="form-control" id="oquantity" min=1  required = "required" onblur="validate_n('#oquantity');" />
       			</div>
       			<div class="form-group">
-      				<label for="price">Цена</label>
+      				<label for="price">Цена</label><br/>
       				<input type="number" value="0" class="form-control" id="oprice" min=0  required = "required" onblur="validate_n('#oprice');"/>
    				</div>
    				<button class="btn-toolbar glyphicon-plus" onclick="addnewpanel();" alt="Добавить позицию">+</button>
@@ -142,11 +141,11 @@
 	<div id="drivers" style="display:none;">
 		<form role="form" class="form-inline" onsubmit="add_driver();">
    			<div class="form-group">
-      			<label for="driver_name">Имя</label>
+      			<label for="driver_name">Имя</label><br/>
       			<input type="text" class="form-control" id="driver_name" required = "required" onblur="validate_t('#driver_name');">
       		</div>
       		<div class="form-group">
-      			<label for="driver_share">Доля</label>
+      			<label for="driver_share">Доля</label><br/>
       			<input type="number" value="0" class="form-control" id="driver_share" min="0"  required="required" onblur="validate_n('#driver_share');"/>
    			</div>
    			<button type="submit" class="btn btn-success">ОК</button>
@@ -167,11 +166,11 @@
 	<div id="operators" style="display:none;">
 		<form role="form" class="form-inline" onsubmit="add_operator();">
    			<div class="form-group">
-      			<label for="operator_name">Имя</label>
+      			<label for="operator_name">Имя</label><br/>
       			<input type="text" class="form-control" id="operator_name" required = "required" onblur="validate_t('#operator_name');">
       		</div>
       		<div class="form-group">
-      			<label for="operator_share">Доля</label>
+      			<label for="operator_share">Доля</label><br/>
       			<input type="number" value="0" class="form-control" id="operator_share" min="0"  required="required" onblur="validate_n('#operator_share');"/>
    			</div>
    			<button type="submit" class="btn btn-success">ОК</button>
