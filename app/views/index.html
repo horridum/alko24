@@ -15,7 +15,8 @@
 <script type="text/javascript" src="../js/main.js"></script>
   
 </head>
-<body class="container">
+<body class="container-fluid">
+<div class="row main">
 
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="container-fluid">
@@ -59,6 +60,7 @@
    			</div>
    			
 		</form>
+		<hr/>
 		<div id="viewstore">
     	
 			<table class="store">
@@ -112,7 +114,9 @@
       				<label for="price">Цена</label><br/>
       				<input type="number" value="0" class="form-control" id="oprice" min=0  required = "required" onblur="validate_n('#oprice');"/>
    				</div>
-   				<button class="btn-toolbar glyphicon-plus" onclick="addnewpanel();" alt="Добавить позицию">+</button>
+   				<div class="form-group">
+   					<button class="btn-success glyphicon-plus plus form-control" onclick="addnewpanel();" alt="Добавить позицию"></button>
+   				</div>
    				<!-- button class="btn-toolbar glyphicon-minus" onclick="delnewpanel();" alt="Удалить последнюю добавленную позицию">-</button -->
       		</div>
   
@@ -121,6 +125,7 @@
    				<button type="cancel" class="btn btn-warning" onclick="$('#addorderform').toggle(100);  ">Отмена</button>
    			
 		</form>
+		<hr/>
 		<div id="vieworders">
     		<table class="store">
 				<thead>
@@ -151,6 +156,7 @@
    			<button type="submit" class="btn btn-success">ОК</button>
    			<button type="cancel" class="btn btn-warning" onclick="$('#drivers').toggle(100); return(false);  ">Отмена</button>
 		</form>
+		<hr/>
 		<table class="store">
 			<thead>
 				<tr>
@@ -176,6 +182,7 @@
    			<button type="submit" class="btn btn-success">ОК</button>
    			<button type="cancel" class="btn btn-warning" onclick="$('#operators').toggle(100); return(false);  ">Отмена</button>
 		</form>
+		<hr/>
 		<table class="store">
 			<thead>
 				<tr>
@@ -212,6 +219,6 @@
 </script>
 
 
-
+</div>
 </body>
 </html>

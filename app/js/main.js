@@ -175,12 +175,7 @@ function addnewpanel(){
   div.innerHTML='<div class="form-group"><select class="form-control select" id="otitle'+num+'" required = "required"></select></div>'+
   ' <div class="form-group"><input type="number" value="1" class="form-control" id="oquantity'+num+'" min=1  required = "required" onblur="validate_n(\'#oquantity'+num+'\');" /></div>'+
   ' <div class="form-group"><input type="number" value="0" class="form-control" id="oprice'+num+'" min=0  required = "required" onblur="validate_n(\'#oprice'+num+'\');"/></div>'
-  //var oarr = Array();
-  //var otitle = $("otitle").clone();
-    //otitle = JSON.parse(otitle);
-    //psdocument.createElement('select');
-  //var oprice = document.createElement('input');
-  //var oquantity = document.createElement('input');
+  
   $('#buys').append(div);
   
   $('#amount').val(num);

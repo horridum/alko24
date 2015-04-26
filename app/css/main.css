@@ -110,3 +110,18 @@ select.select {
 .form-group {
 	display: inline;
 }
+
+.main {
+	padding: 25px;
+}
+
+button[type="submit"], button[type="cancel"] {
+	padding-top: 5px;
+	margin-top: 22px;
+}
+
+button.plus {
+	margin-top: 22px;
+	padding-top: 5px;
+
+}
