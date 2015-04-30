@@ -247,12 +247,29 @@ function add_operator(){
 }
 
 function add_item(){
+  
   var title = $('#title :selected').text();
   if (title == "") { title = $('#title').jecValue();}
   var id = $('#title :selected').val();
   var quantity = $('#quantity').val();
   var price = $('#price').val();
+  /******************************************************/
+  console.log(id);
 
+  new Item({'id': id})
+    .fetch()
+    .then(function(model){
+      console.log(model);
+      if (model!=null) {
+        var old_qt = model.get('quantity');
+        var old_price = model.get('purchase_price');
+        price = (price*quantity + old_price*old_qt) / (old_qt+quantity);
+        quantity += old_qt;
+        console.log(old_qt+old_price+price+quantity);
+      }
+      
+    });
+/***********************************************************************/
   new Item({'id': id, 'title': title, 'quantity': quantity, 'purchase_price': price})
     .save({'title': title, 'quantity': quantity, 'purchase_price': price},{patch: true});
   loaditems();
